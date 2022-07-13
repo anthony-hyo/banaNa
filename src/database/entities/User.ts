@@ -17,19 +17,50 @@ export class User extends BaseEntity {
 	@Column({ nullable: false })
 	token!: string
 
-	@OneToOne((type) => Access, (access: Access) => access.id)
+	@OneToOne((type) => Access, (access: Access) => access.id/*, {
+		nullable: false
+	}*/)
 	@JoinColumn({
-		name: `hairId`
+		name: `accessId`
 	})
 	access!: Access
 
 	@Column({ nullable: false })
+	level!: number;
+
+	@Column({ nullable: false })
 	gender!: `M` | `F`
 
-	@OneToOne((type) => Hair, (hair: Hair) => hair.id)
+	@OneToOne((type) => Hair, (hair: Hair) => hair.id/*, {
+		nullable: false
+	}*/)
 	@JoinColumn({
 		name: `hairId`
 	})
 	hair!: Hair
+
+	@Column({ nullable: false })
+	colorAccessory!: number
+
+	@Column({ nullable: false })
+	colorBase!: number
+
+	@Column({ nullable: false })
+	colorEye!: number
+
+	@Column({ nullable: false })
+	colorHair!: number
+
+	@Column({ nullable: false })
+	colorSkin!: number
+
+	@Column({ nullable: false })
+	colorTrim!: number
+
+	@Column({ nullable: false })
+	colorName!: number;
+
+	@Column({ nullable: false })
+	colorChat!: number
 
 }

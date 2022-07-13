@@ -96,9 +96,15 @@ export default class Player extends Avatar {
 		const data: User = <User> await this.data
 
 		return {
-			//eqp: equipment().data(),
-			//iCP: equipment().classPoints(),
-			iUpgDays: data.upgradeDays,
+			eqp: [
+				{
+					ItemID: 1,
+					sFile: `aldargentrita.swf`,
+					sLink: `AldArgentRita`,
+				}
+			],
+			iCP: 9999,
+			iUpgDays: 99,
 			intAccessLevel: data.access,
 			intColorAccessory: data.colorAccessory,
 			intColorBase: data.colorBase,
@@ -108,8 +114,8 @@ export default class Player extends Avatar {
 			intColorTrim: data.colorTrim,
 			intColorName: data.colorName,
 			strChatColor: data.colorChat,
-			intLevel: data.level(),
-			strClassName: equipment().className(),
+			intLevel: data.level,
+			strClassName: `Test class`,
 			strGender: data.gender,
 			strHairFilename: data.hair.file,
 			strHairName: data.hair.name,
