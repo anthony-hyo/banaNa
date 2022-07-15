@@ -1,11 +1,10 @@
 import PlayerNetwork from "../avatar/Player/PlayerNetwork";
 import {XMLParser} from "fast-xml-parser";
-import {User} from "../database/entities/User";
+import {User} from "../database/entities/user/User";
 import {IRequest} from "../interfaces/IRequest";
 import RequestArg from "../request/RequestArg";
 import Player from "../avatar/Player/Player";
 import {DATA_JSON, DATA_NONE, DATA_XML, DATA_XT} from "../util/Const";
-import {GameCore} from "../database/entities/GameCore";
 import GameController from "../controller/GameController";
 
 export default class Decoder {
@@ -77,7 +76,7 @@ export default class Decoder {
 
 				const args: string[] = []
 
-				for (let i = 4; i < params.length; i++) {
+				for (let i = 3; i < params.length; i++) {
 					args.push(params[i])
 				}
 
