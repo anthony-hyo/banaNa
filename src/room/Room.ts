@@ -29,6 +29,7 @@ export default class Room {
 
 	public addPlayer(player: Player) {
 		this._players.set(player.network.id, player)
+		player.room = this
 	}
 
 	public removePlayer(player: Player) {

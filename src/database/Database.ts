@@ -6,17 +6,24 @@ export default class Database {
 
 	constructor() {
 		this.database = new DataSource({
-			type: "mariadb",
-			host: "localhost",
+			type: `mariadb`,
+			charset: `utf8mb4_general_ci`,
+			timezone: `Z`,
+			name: `banaNa`,
+			entities: [
+				`${__dirname}/entities/**/*.ts`
+			],
+			entityPrefix: `bn_`,
+			synchronize: true,
+			relationLoadStrategy: `query`,
+			cache: {
+				duration: 30000
+			},
+			host: `localhost`,
 			port: 3306,
 			username: "root",
 			password: "123",
 			database: "banana",
-			synchronize: true,
-			entityPrefix: `bn_`,
-			entities: [
-				`${__dirname}/entities/**/*.ts`
-			],
 		})
 	}
 

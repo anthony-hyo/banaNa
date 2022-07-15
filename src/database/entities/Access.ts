@@ -1,12 +1,16 @@
-import {BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn,} from "typeorm"
+import {BaseEntity, Column, Entity, PrimaryGeneratedColumn,} from "typeorm"
 
 @Entity(`access`)
 export class Access extends BaseEntity {
 
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({
+		unsigned: true
+	})
 	id!: number
 
-	@Column({ nullable: false })
+	@Column({
+		nullable: false
+	})
 	name!: string
 
 }

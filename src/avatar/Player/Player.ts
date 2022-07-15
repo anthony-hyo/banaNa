@@ -1,5 +1,5 @@
 import Avatar from "../Avatar";
-import {User} from "../../database/entities/User";
+import {User} from "../../database/entities/user/User";
 import PlayerNetwork from "./PlayerNetwork";
 import Room from "../../room/Room";
 import RoomController from "../../controller/RoomController";
@@ -38,12 +38,6 @@ export default class Player extends Avatar {
 
 	public get network(): PlayerNetwork {
 		return this._network;
-	}
-
-	public get data(): Promise<User | null> {
-		return User.findOneBy({
-			id: this._databaseId
-		})
 	}
 
 	public get properties(): any {
@@ -92,34 +86,4 @@ export default class Player extends Avatar {
 		this.network.writeObject(moveToArea)
 	}
 
-	public async userData(guild: boolean) {
-		const data: User = <User> await this.data
-
-		return {
-			eqp: [
-				{
-					ItemID: 1,
-					sFile: `aldargentrita.swf`,
-					sLink: `AldArgentRita`,
-				}
-			],
-			iCP: 9999,
-			iUpgDays: 99,
-			intAccessLevel: data.access,
-			intColorAccessory: data.colorAccessory,
-			intColorBase: data.colorBase,
-			intColorEye: data.colorEye,
-			intColorHair: data.colorHair,
-			intColorSkin: data.colorSkin,
-			intColorTrim: data.colorTrim,
-			intColorName: data.colorName,
-			strChatColor: data.colorChat,
-			intLevel: data.level,
-			strClassName: `Test class`,
-			strGender: data.gender,
-			strHairFilename: data.hair.file,
-			strHairName: data.hair.name,
-			strUsername: this._username,
-		}
-	}
 }
