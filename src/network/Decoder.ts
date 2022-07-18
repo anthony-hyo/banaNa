@@ -4,7 +4,6 @@ import {User} from "../database/entities/user/User";
 import {IRequest} from "../interfaces/IRequest";
 import RequestArg from "../request/RequestArg";
 import Player from "../avatar/Player/Player";
-import {DATA_JSON, DATA_NONE, DATA_XML, DATA_XT} from "../util/Const";
 import GameController from "../controller/GameController";
 
 export default class Decoder {
@@ -24,7 +23,7 @@ export default class Decoder {
 		const first: string = data.charAt(0)
 
 		switch (first) {
-			case DATA_XML:
+			case DecoderType.XML:
 				if (data.includes(`policy`)) {
 					this.playerNetwork.write(`<cross-domain-policy><allow-access-from domain='*' to-ports='5588' /></cross-domain-policy>`)
 					return
@@ -61,9 +60,9 @@ export default class Decoder {
 						break
 				}
 				break
-			case DATA_JSON:
+			case DecoderType.JSON:
 				break
-			case DATA_XT:
+			case DecoderType.XT:
 				if (!this.playerNetwork.player) {
 					//TODO: Kick or Ban
 					return;
@@ -85,7 +84,7 @@ export default class Decoder {
 				request.handler(this.playerNetwork.player, RequestArg.parse(args))
 				break
 			default:
-			case DATA_NONE:
+			case DecoderType.NONE:
 				//TODO: Kick or Ban
 				break
 		}
