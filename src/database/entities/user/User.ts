@@ -5,13 +5,15 @@ import {
 	Entity,
 	Index,
 	JoinColumn,
+	OneToMany,
 	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from "typeorm"
-import {Access} from "../Access";
+import {TypeAccess} from "../type/TypeAccess";
 import {UserAttribute} from "./UserAttribute";
 import {Gender} from "../../../util/Const";
+import {UserInventory} from "./UserInventory";
 
 @Entity(`users`)
 @Index((user: User) => [
@@ -63,20 +65,23 @@ export class User extends BaseEntity {
 	})
 	accessId!: number
 
-	@OneToOne((type) => Access)
+	@OneToOne((type) => TypeAccess)
 	@JoinColumn()
-	access!: Access
-
-	@UpdateDateColumn()
-	updatedAt!: Date
+	access!: TypeAccess
 
 	@CreateDateColumn()
 	createdAt!: Date
 
+	@UpdateDateColumn()
+	updatedAt!: Date
+
 	@OneToOne((type) => UserAttribute, (userAttribute: UserAttribute) => userAttribute.user)
 	attribute!: UserAttribute
 
-	get properties(): { intAccessLevel: Access; intColorBase: string; intColorEye: string; strChatColor: string; eqp: ({ ar: { sLink: string; sFile: string; ItemID: number } } | { Weapon: { sType: string; sLink: string; sFile: string; ItemID: number } })[]; strGender: Gender; strUsername: string; intColorAccessory: string; intLevel: number; iUpgDays: 99; strClassName: "Test class"; intColorHair: string; strHairFilename: string; intColorName: string; iCP: 9999; strHairName: string; intColorTrim: string; intColorSkin: string } {
+	@OneToMany((type) => UserInventory, (userInventory: UserInventory) => userInventory.user)
+	inventory!: UserInventory[]
+
+	get properties(): { intAccessLevel: TypeAccess; intColorBase: string; intColorEye: string; strChatColor: string; eqp: ({ ar: { sLink: string; sFile: string; ItemID: number } } | { Weapon: { sType: string; sLink: string; sFile: string; ItemID: number } })[]; strGender: Gender; strUsername: string; intColorAccessory: string; intLevel: number; iUpgDays: 99; strClassName: "Test class"; intColorHair: string; strHairFilename: string; intColorName: string; iCP: 9999; strHairName: string; intColorTrim: string; intColorSkin: string } {
 		const attribute: UserAttribute = this.attribute
 
 		return {
@@ -108,7 +113,7 @@ export class User extends BaseEntity {
 			intColorTrim: attribute.colorTrim,
 			intColorName: attribute.colorName,
 			strChatColor: attribute.colorChat,
-			intLevel: attribute.level,
+			intLevel: attribute.levelId,
 			strClassName: `Test class`,
 			strGender: attribute.gender,
 			strHairFilename: attribute.hair.file,

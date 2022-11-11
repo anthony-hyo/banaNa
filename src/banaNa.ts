@@ -2,8 +2,8 @@ import Network from "./network/Network";
 import logger from "./util/Logger";
 import Database from "./database/Database";
 import GameController from "./controller/GameController";
-import {GameCore} from "./database/entities/GameCore";
-import {GameLogin} from "./database/entities/GameLogin";
+import {GameCore} from "./database/entities/game/GameCore";
+import {GameLogin} from "./database/entities/game/GameLogin";
 import RoomController from "./controller/RoomController";
 
 class banaNa {

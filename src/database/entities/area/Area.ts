@@ -3,10 +3,17 @@ import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 @Entity(`maps`)
 export class Area extends BaseEntity {
 
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({
+		unsigned: true
+	})
 	id!: number
 
-	@Column()
+	@Column({
+		type: `varchar`,
+		nullable: false,
+		default: `battleon`,
+		unique: true
+	})
 	name!: string
 
 }

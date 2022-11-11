@@ -3,6 +3,7 @@ import {User} from "../../database/entities/user/User";
 import PlayerNetwork from "./PlayerNetwork";
 import Room from "../../room/Room";
 import RoomController from "../../controller/RoomController";
+import PlayerInventory from "./PlayerInventory";
 
 export default class Player extends Avatar {
 
@@ -10,6 +11,8 @@ export default class Player extends Avatar {
 	private readonly _username: string
 
 	private readonly _network: PlayerNetwork
+
+	private readonly _inventory: PlayerInventory = new PlayerInventory(this)
 
 	constructor(user: User, playerNetwork: PlayerNetwork) {
 		super();
@@ -38,6 +41,10 @@ export default class Player extends Avatar {
 
 	public get network(): PlayerNetwork {
 		return this._network;
+	}
+
+	public get inventory(): PlayerInventory {
+		return this._inventory;
 	}
 
 	public get properties(): any {

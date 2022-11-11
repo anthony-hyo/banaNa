@@ -1,4 +1,4 @@
-import {Area} from "../database/entities/Area";
+import {Area} from "../database/entities/area/Area";
 import Player from "../avatar/Player/Player";
 
 export default class Room {

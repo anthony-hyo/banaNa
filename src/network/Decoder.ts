@@ -5,6 +5,7 @@ import {IRequest} from "../interfaces/IRequest";
 import RequestArg from "../request/RequestArg";
 import Player from "../avatar/Player/Player";
 import GameController from "../controller/GameController";
+import {DecoderType} from "../util/Const";
 
 export default class Decoder {
 

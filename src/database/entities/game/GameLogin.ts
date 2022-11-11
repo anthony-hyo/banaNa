@@ -3,13 +3,23 @@ import {BaseEntity, Column, Entity, PrimaryGeneratedColumn,} from "typeorm"
 @Entity(`game_login`)
 export class GameLogin extends BaseEntity {
 
-	@PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn({
+		unsigned: true,
+	})
 	id!: number
 
-	@Column()
+	@Column({
+		type: `text`,
+		nullable: false,
+		default: ``
+	})
 	name!: string
 
-	@Column()
+	@Column({
+		type: `text`,
+		nullable: false,
+		default: ``
+	})
 	value!: string
 
 	static async values(): Promise<string> {

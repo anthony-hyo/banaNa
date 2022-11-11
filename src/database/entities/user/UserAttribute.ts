@@ -1,38 +1,72 @@
-import {Column, CreateDateColumn, Entity, JoinColumn, OneToOne, UpdateDateColumn} from "typeorm";
-import {Hair} from "../Hair";
-import {BaseUserChild} from "./BaseUserChild";
+import {
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	JoinColumn,
+	OneToOne,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn
+} from "typeorm";
+import {Hair} from "../hair/Hair";
 import {Gender} from "../../../util/Const";
+import {User} from "./User";
+import {GameLevel} from "../game/GameLevel";
 
-@Entity(`users_attributes`)
-export class UserAttribute extends BaseUserChild {
+@Entity(`users_attribute`)
+export class UserAttribute extends BaseEntity {
+
+	@PrimaryGeneratedColumn({
+		unsigned: true
+	})
+	id!: number
 
 	@Column({
 		nullable: false,
 		unsigned: true
+	})
+	userId!: number
+
+	@OneToOne((type) => User, (user: User) => user.attribute)
+	@JoinColumn()
+	user!: User
+
+	@Column({
+		nullable: false,
+		unsigned: true,
+		default: 0
 	})
 	coins!: number
 
 	@Column({
 		nullable: false,
-		unsigned: true
+		unsigned: true,
+		default: 0
 	})
 	gold!: number
 
 	@Column({
 		nullable: false,
-		unsigned: true
+		unsigned: true,
+		default: 1
 	})
-	level!: number
+	levelId!: number
+
+	@OneToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.level)
+	@JoinColumn()
+	level!: GameLevel
 
 	@Column({
 		nullable: false,
-		unsigned: true
+		unsigned: true,
+		default: 5
 	})
 	activationFlag!: number
 
 	@Column({
 		nullable: false,
-		unsigned: true
+		unsigned: true,
+		default: 0
 	})
 	permanentMuteFlag!: number
 
@@ -74,7 +108,7 @@ export class UserAttribute extends BaseUserChild {
 		type: `char`,
 		length: 6,
 		nullable: false,
-		default: `000000`
+		default: `1649e`
 	})
 	colorEye!: string
 
@@ -82,7 +116,7 @@ export class UserAttribute extends BaseUserChild {
 		type: `char`,
 		length: 6,
 		nullable: false,
-		default: `000000`
+		default: `5e4f37`
 	})
 	colorHair!: string
 
@@ -90,7 +124,7 @@ export class UserAttribute extends BaseUserChild {
 		type: `char`,
 		length: 6,
 		nullable: false,
-		default: `000000`
+		default: `eacd8a`
 	})
 	colorSkin!: string
 
@@ -106,7 +140,7 @@ export class UserAttribute extends BaseUserChild {
 		type: `char`,
 		length: 6,
 		nullable: false,
-		default: `000000`
+		default: `ffffff`
 	})
 	colorName!: string
 
@@ -114,54 +148,70 @@ export class UserAttribute extends BaseUserChild {
 		type: `char`,
 		length: 6,
 		nullable: false,
-		default: `000000`
+		default: `ffffff`
 	})
 	colorChat!: string
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	damagePerSecond!: number
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	range!: number
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	dexterity!: number
 
 	@Column({
 		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	endurance!: number
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	intelligence!: number
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	luck!: number
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	strength!: number
 
 	@Column({
-		nullable: false
+		nullable: false,
+		unsigned: true,
+		default: 1
 	})
 	wisdom!: number
 
-	@UpdateDateColumn()
-	updatedAt!: Date
-
 	@CreateDateColumn()
 	createdAt!: Date
+
+	@UpdateDateColumn()
+	updatedAt!: Date
 
 }

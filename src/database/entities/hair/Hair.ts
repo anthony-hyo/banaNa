@@ -1,5 +1,5 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn,} from "typeorm"
-import {Gender} from "../../util/Const";
+import {Gender} from "../../../util/Const";
 
 @Entity(`hairs`)
 export class Hair extends BaseEntity {
@@ -10,12 +10,16 @@ export class Hair extends BaseEntity {
 	id!: number
 
 	@Column({
-		nullable: false
+		type: `text`,
+		nullable: false,
+		default: ``
 	})
 	name!: string
 
 	@Column({
-		nullable: false
+		type: `text`,
+		nullable: false,
+		default: ``
 	})
 	file!: string
 

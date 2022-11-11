@@ -1,7 +1,7 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn,} from "typeorm"
 
-@Entity(`access`)
-export class Access extends BaseEntity {
+@Entity(`type_accesses`)
+export class TypeAccess extends BaseEntity {
 
 	@PrimaryGeneratedColumn({
 		unsigned: true
@@ -9,7 +9,9 @@ export class Access extends BaseEntity {
 	id!: number
 
 	@Column({
-		nullable: false
+		type: `varchar`,
+		nullable: false,
+		default: `Player`
 	})
 	name!: string
 
