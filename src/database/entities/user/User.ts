@@ -7,6 +7,7 @@ import {
 	JoinColumn,
 	ManyToOne,
 	OneToMany,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from "typeorm"
@@ -65,7 +66,10 @@ export class User extends BaseEntity {
 	})
 	accessId!: number
 
-	@ManyToOne((type) => TypeAccess)
+	@ManyToOne((type) => TypeAccess, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	access!: TypeAccess
 
@@ -75,7 +79,7 @@ export class User extends BaseEntity {
 	@UpdateDateColumn()
 	updatedAt!: Date
 
-	@ManyToOne((type) => UserAttribute, (userAttribute: UserAttribute) => userAttribute.user)
+	@OneToOne((type) => UserAttribute, (userAttribute: UserAttribute) => userAttribute.user)
 	attribute!: UserAttribute
 
 	@OneToMany((type) => UserInventory, (userInventory: UserInventory) => userInventory.user)

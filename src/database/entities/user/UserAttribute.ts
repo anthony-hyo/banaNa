@@ -5,6 +5,7 @@ import {
 	Entity,
 	JoinColumn,
 	ManyToOne,
+	OneToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
@@ -27,7 +28,10 @@ export class UserAttribute extends BaseEntity {
 	})
 	userId!: number
 
-	@ManyToOne((type) => User, (user: User) => user.attribute)
+	@OneToOne((type) => User, (user: User) => user.attribute, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	user!: User
 
@@ -55,7 +59,10 @@ export class UserAttribute extends BaseEntity {
 	})
 	levelId!: number
 
-	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id)
+	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	level!: GameLevel
 
@@ -88,7 +95,10 @@ export class UserAttribute extends BaseEntity {
 	})
 	hairId!: number
 
-	@ManyToOne((type) => Hair)
+	@ManyToOne((type) => Hair, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	hair!: Hair
 

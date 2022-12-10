@@ -23,7 +23,10 @@ export class AreaCell extends BaseEntity {
 	})
 	areaId!: number
 
-	@ManyToOne((type) => Area, (area: Area) => area.id)
+	@ManyToOne((type) => Area, (area: Area) => area.id, {
+		onDelete: "CASCADE",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	area!: Area
 

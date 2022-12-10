@@ -16,7 +16,10 @@ export class Area extends BaseEntity {
 	})
 	auraId!: number
 
-	@ManyToOne((type) => Aura, (aura: Aura) => aura.id)
+	@ManyToOne((type) => Aura, (aura: Aura) => aura.id, {
+		onDelete: "CASCADE",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	aura!: Aura
 

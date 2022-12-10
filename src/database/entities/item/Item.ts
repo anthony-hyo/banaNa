@@ -45,7 +45,10 @@ export class Item extends BaseEntity {
 	})
 	typeId!: number
 
-	@ManyToOne((type) => TypeEquipment, (typeItem: TypeEquipment) => typeItem.id)
+	@ManyToOne((type) => TypeEquipment, (typeItem: TypeEquipment) => typeItem.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	type!: TypeEquipment
 
@@ -137,7 +140,10 @@ export class Item extends BaseEntity {
 	})
 	levelId!: number
 
-	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id)
+	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	level!: GameLevel
 
@@ -148,7 +154,10 @@ export class Item extends BaseEntity {
 	})
 	enhancementId!: number
 
-	@ManyToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id)
+	@ManyToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	enhancement!: Enhancement
 
@@ -213,7 +222,10 @@ export class Item extends BaseEntity {
 	})
 	requiredClassItemId!: number
 
-	@ManyToOne((type) => Item, (item: Item) => item.id)
+	@ManyToOne((type) => Item, (item: Item) => item.id, {
+		onDelete: "SET NULL",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	requiredClassItem!: Item
 
@@ -235,7 +247,10 @@ export class Item extends BaseEntity {
 	})
 	requiredFactionId!: number
 
-	@ManyToOne((type) => TypeFaction, (typeFaction: TypeFaction) => typeFaction.id)
+	@ManyToOne((type) => TypeFaction, (typeFaction: TypeFaction) => typeFaction.id, {
+		onDelete: "SET NULL",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	requiredFaction!: TypeFaction
 

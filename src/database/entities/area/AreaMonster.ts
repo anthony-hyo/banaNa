@@ -24,7 +24,10 @@ export class AreaMonster extends BaseEntity {
 	})
 	areaId!: number
 
-	@ManyToOne((type) => Area, (area: Area) => area.id)
+	@ManyToOne((type) => Area, (area: Area) => area.id, {
+		onDelete: "CASCADE",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	area!: Area
 
@@ -36,7 +39,10 @@ export class AreaMonster extends BaseEntity {
 	})
 	monsterId!: number
 
-	@ManyToOne((type) => Monster, (monster: Monster) => monster.id)
+	@ManyToOne((type) => Monster, (monster: Monster) => monster.id, {
+		onDelete: "CASCADE",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	monster!: Monster
 

@@ -22,11 +22,14 @@ export class Enhancement extends BaseEntity {
 	@Column({
 		nullable: false,
 		unsigned: true,
-		default: 1
+		default: 0
 	})
 	patternId!: number
 
-	@ManyToOne((type) => EnhancementPattern, (enhancementPattern: EnhancementPattern) => enhancementPattern.id)
+	@ManyToOne((type) => EnhancementPattern, (enhancementPattern: EnhancementPattern) => enhancementPattern.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	pattern!: EnhancementPattern
 
@@ -38,7 +41,10 @@ export class Enhancement extends BaseEntity {
 	})
 	levelId!: number
 
-	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id)
+	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	level!: GameLevel
 

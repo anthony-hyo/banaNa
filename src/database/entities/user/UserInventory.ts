@@ -29,17 +29,23 @@ export class UserInventory extends BaseEntity {
 	})
 	userId!: number
 
-	@ManyToOne((type) => User, (user: User) => user.inventory)
+	@ManyToOne((type) => User, (user: User) => user.inventory, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	user!: User
 
 	@Column({
 		nullable: false,
-		unsigned: true
+		unsigned: true,
 	})
 	itemId!: number
 
-	@ManyToOne((type) => Item, (item: Item) => item.id)
+	@ManyToOne((type) => Item, (item: Item) => item.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	item!: Item
 
@@ -50,7 +56,10 @@ export class UserInventory extends BaseEntity {
 	})
 	enhancementId!: number
 
-	@ManyToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id)
+	@ManyToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id, {
+		onDelete: "RESTRICT",
+		onUpdate: "CASCADE"
+	})
 	@JoinColumn()
 	enhancement!: Enhancement
 
