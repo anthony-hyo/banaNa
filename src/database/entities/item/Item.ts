@@ -298,18 +298,18 @@ export class Item extends BaseEntity {
 			sQuest: await this.questStringName(),
 			sDesc: this.description,
 			sES: this.type.equipment,
-			sElmt: "None",
+			sElmt: `None`,
 			sFile: this.file,
 			sIcon: this.icon,
 			sLink: this.linkage,
 			sName: this.name,
 			iReqCP: this.requiredClassPoint,
-			iClass: this.requiredClassItemId,
-			sClass: this.requiredClassItem.name,
+			iClass: 0,
+			sClass: ``,
 			iReqRep: this.requiredFactionReputation,
-			FactionID: this.requiredFactionId,
-			sFaction: this.requiredFaction.name,
-			sReqQuests: "",
+			FactionID: 0,
+			sFaction: ``,
+			sReqQuests: ``,
 			sType: this.type.name,
 			sMeta: this.meta
 		}
@@ -336,6 +336,20 @@ export class Item extends BaseEntity {
 					EnhDPS: this.enhancement.damagePerSecond
 				})
 			}
+		}
+
+		if (this.requiredClassItemId) {
+			Object.assign(data, {
+				iClass: this.requiredClassItemId,
+				sClass: this.requiredClassItem.name
+			})
+		}
+
+		if (this.requiredFactionId) {
+			Object.assign(data, {
+				FactionID: this.requiredFactionId,
+				sFaction: this.requiredFaction.name,
+			})
 		}
 
 		return data;
