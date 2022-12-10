@@ -4,7 +4,7 @@ import {
 	CreateDateColumn,
 	Entity,
 	JoinColumn,
-	OneToOne,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
@@ -27,11 +27,12 @@ export class UserAttribute extends BaseEntity {
 	})
 	userId!: number
 
-	@OneToOne((type) => User, (user: User) => user.attribute)
+	@ManyToOne((type) => User, (user: User) => user.attribute)
 	@JoinColumn()
 	user!: User
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 0
@@ -39,6 +40,7 @@ export class UserAttribute extends BaseEntity {
 	coins!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 0
@@ -46,13 +48,14 @@ export class UserAttribute extends BaseEntity {
 	gold!: number
 
 	@Column({
+		name: `levelId`,
 		nullable: false,
 		unsigned: true,
 		default: 1
 	})
 	levelId!: number
 
-	@OneToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.level)
+	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id)
 	@JoinColumn()
 	level!: GameLevel
 
@@ -64,6 +67,7 @@ export class UserAttribute extends BaseEntity {
 	activationFlag!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 0
@@ -84,7 +88,7 @@ export class UserAttribute extends BaseEntity {
 	})
 	hairId!: number
 
-	@OneToOne((type) => Hair)
+	@ManyToOne((type) => Hair)
 	@JoinColumn()
 	hair!: Hair
 
@@ -153,6 +157,7 @@ export class UserAttribute extends BaseEntity {
 	colorChat!: string
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -160,6 +165,7 @@ export class UserAttribute extends BaseEntity {
 	damagePerSecond!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -167,6 +173,7 @@ export class UserAttribute extends BaseEntity {
 	range!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -174,6 +181,7 @@ export class UserAttribute extends BaseEntity {
 	dexterity!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -181,6 +189,7 @@ export class UserAttribute extends BaseEntity {
 	endurance!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -188,6 +197,7 @@ export class UserAttribute extends BaseEntity {
 	intelligence!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -195,6 +205,7 @@ export class UserAttribute extends BaseEntity {
 	luck!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -202,6 +213,7 @@ export class UserAttribute extends BaseEntity {
 	strength!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1

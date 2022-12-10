@@ -9,6 +9,7 @@ export class EnhancementPattern extends BaseEntity {
 	id!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -16,6 +17,7 @@ export class EnhancementPattern extends BaseEntity {
 	dexterity!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -23,6 +25,7 @@ export class EnhancementPattern extends BaseEntity {
 	endurance!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -30,6 +33,7 @@ export class EnhancementPattern extends BaseEntity {
 	intelligence!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -37,6 +41,7 @@ export class EnhancementPattern extends BaseEntity {
 	luck!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
@@ -44,6 +49,7 @@ export class EnhancementPattern extends BaseEntity {
 	strength!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1

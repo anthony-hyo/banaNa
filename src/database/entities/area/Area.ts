@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity(`maps`)
+@Entity(`areas`)
 export class Area extends BaseEntity {
 
 	@PrimaryGeneratedColumn({

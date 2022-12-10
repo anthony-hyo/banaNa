@@ -4,7 +4,7 @@ import {
 	CreateDateColumn,
 	Entity,
 	JoinColumn,
-	OneToOne,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
@@ -20,26 +20,25 @@ export class Enhancement extends BaseEntity {
 	id!: number
 
 	@Column({
-		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
 	})
 	patternId!: number
 
-	@OneToOne((type) => EnhancementPattern, (enhancementPattern: EnhancementPattern) => enhancementPattern.id)
+	@ManyToOne((type) => EnhancementPattern, (enhancementPattern: EnhancementPattern) => enhancementPattern.id)
 	@JoinColumn()
 	pattern!: EnhancementPattern
 
 	@Column({
-		type: `int`,
+		name: `levelId`,
 		nullable: false,
 		unsigned: true,
 		default: 1
 	})
 	levelId!: number
 
-	@OneToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.level)
+	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id)
 	@JoinColumn()
 	level!: GameLevel
 

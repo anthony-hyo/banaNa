@@ -5,7 +5,7 @@ import {
 	DeleteDateColumn,
 	Entity,
 	JoinColumn,
-	OneToOne,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
@@ -29,7 +29,7 @@ export class UserInventory extends BaseEntity {
 	})
 	userId!: number
 
-	@OneToOne((type) => User, (user: User) => user.inventory)
+	@ManyToOne((type) => User, (user: User) => user.inventory)
 	@JoinColumn()
 	user!: User
 
@@ -39,7 +39,7 @@ export class UserInventory extends BaseEntity {
 	})
 	itemId!: number
 
-	@OneToOne((type) => Item, (item: Item) => item.id)
+	@ManyToOne((type) => Item, (item: Item) => item.id)
 	@JoinColumn()
 	item!: Item
 
@@ -50,7 +50,7 @@ export class UserInventory extends BaseEntity {
 	})
 	enhancementId!: number
 
-	@OneToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id)
+	@ManyToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id)
 	@JoinColumn()
 	enhancement!: Enhancement
 

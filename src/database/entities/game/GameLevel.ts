@@ -6,16 +6,18 @@ export class GameLevel extends BaseEntity {
 	@PrimaryGeneratedColumn({
 		unsigned: true,
 	})
-	level!: number
+	id!: number
 
 	@Column({
 		nullable: false,
+		type: `int`,
 		unsigned: true,
 		default: 302500
 	})
 	requiredExperience!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 302500
@@ -23,9 +25,10 @@ export class GameLevel extends BaseEntity {
 	health!: number
 
 	@Column({
+		type: `int`,
 		nullable: false,
 		unsigned: true,
-		default: 302500
+		default: 100
 	})
 	mana!: number
 

@@ -4,7 +4,7 @@ import {
 	CreateDateColumn,
 	Entity,
 	JoinColumn,
-	OneToOne,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from "typeorm";
@@ -39,14 +39,13 @@ export class Item extends BaseEntity {
 	description!: string
 
 	@Column({
-		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 1
 	})
 	typeId!: number
 
-	@OneToOne((type) => TypeEquipment, (typeItem: TypeEquipment) => typeItem.id)
+	@ManyToOne((type) => TypeEquipment, (typeItem: TypeEquipment) => typeItem.id)
 	@JoinColumn()
 	type!: TypeEquipment
 
@@ -131,26 +130,25 @@ export class Item extends BaseEntity {
 	isNotSellable!: boolean;
 
 	@Column({
-		type: `int`,
+		name: `levelId`,
 		nullable: false,
 		unsigned: true,
 		default: 1
 	})
 	levelId!: number
 
-	@OneToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.level)
+	@ManyToOne((type) => GameLevel, (gameLevel: GameLevel) => gameLevel.id)
 	@JoinColumn()
 	level!: GameLevel
 
 	@Column({
-		type: `int`,
 		nullable: false,
 		unsigned: true,
 		default: 0
 	})
 	enhancementId!: number
 
-	@OneToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id)
+	@ManyToOne((type) => Enhancement, (enhancement: Enhancement) => enhancement.id)
 	@JoinColumn()
 	enhancement!: Enhancement
 
@@ -209,14 +207,13 @@ export class Item extends BaseEntity {
 	 * Required class item
 	 */
 	@Column({
-		type: `int`,
 		nullable: true,
 		unsigned: true,
 		default: null
 	})
 	requiredClassItemId!: number
 
-	@OneToOne((type) => Item, (item: Item) => item.id)
+	@ManyToOne((type) => Item, (item: Item) => item.id)
 	@JoinColumn()
 	requiredClassItem!: Item
 
@@ -232,14 +229,13 @@ export class Item extends BaseEntity {
 	 * Required faction
 	 */
 	@Column({
-		type: `int`,
 		nullable: true,
 		unsigned: true,
 		default: null
 	})
 	requiredFactionId!: number
 
-	@OneToOne((type) => TypeFaction, (typeFaction: TypeFaction) => typeFaction.id)
+	@ManyToOne((type) => TypeFaction, (typeFaction: TypeFaction) => typeFaction.id)
 	@JoinColumn()
 	requiredFaction!: TypeFaction
 
